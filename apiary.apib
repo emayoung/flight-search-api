@@ -15,7 +15,7 @@ Searchflight expects for a authorization token to be included in all requests as
     + Body
     
             {
-                "api_key": "lQKF8n1KVYezN7MDTMqxhXGrZCfgRDvQ"
+                "apiKey": "lQKF8n1KVYezN7MDTMqxhXGrZCfgRDvQ"
              }
 + Response 201 (application/json)
 
@@ -51,7 +51,7 @@ With this endpoint you can get the IATA city codes associated with a particular 
     + Body
                     
             {
-                 "city_name": "Uyo"
+                 "cityName": "Uyo"
             }
 + Response 201 (application/json)
 
@@ -62,19 +62,19 @@ With this endpoint you can get the IATA city codes associated with a particular 
                 "status": "200",
                 "data": [
                     {
-                        "city_code": "QUO",
-                        "city_name": "Uyo",
+                        "cityCode": "QUO",
+                        "cityName": "Uyo",
                         "airport":"Ibom International Airport",
                         "country": "Nigeria"
                         
                     }, {
-                        "city_code": "PSR",
-                        "city_name": "Uyo",
+                        "cityCode": "PSR",
+                        "cityName": "Uyo",
                         "airport":"Beis Airport",
                         "country": "Switzerland"
                     }, {
-                        "city_code": "WDV",
-                        "city_name": "Uyo",
+                        "cityCode": "WDV",
+                        "cityName": "Uyo",
                         "airport":"Algeria Intl",
                         "country": "Algeria"
                     }
@@ -100,7 +100,7 @@ With this endpoint you can get the IATA city codes associated with a particular 
             }
 
 
-## Get city name from code [api/v1/cities/{city-code}]
+## Get city name from code [api/v1/cities/{cityCode}]
 
 ### Get city name from code [GET]
 With this endpoint you can get the city name associated with an IATA Code.
@@ -120,8 +120,8 @@ Searchflight expects for a authorization token to be included in all requests as
                 "status": "200",
                 "data": [
                     {
-                        "city_code": "QUO",
-                        "city_name": "Uyo",
+                        "cityCode": "QUO",
+                        "cityName": "Uyo",
                         "country": "Nigeria"
                         
                     }
@@ -173,8 +173,8 @@ With this endpoint you can search for one way flights from a location.
                     }
                  },
                  {"airline":{
-                    "carrier_code":"W3",
-                    "carrier_name":"Arik Airline",
+                    "carrierCode":"W3",
+                    "carrierName":"Arik Airline",
                     "cabin":"first class"
                     }
                  },
@@ -211,20 +211,20 @@ With this endpoint you can search for one way flights from a location.
                                 "name":"Boeing 737"
                                 },
                             "departure":{
-                                "city_code":"LOS",
-                                "city_name":"Lagos",
+                                "cityCode":"LOS",
+                                "cityName":"Lagos",
                                 "airport":"Lagos Murtaka Muhammed International"
                                 },
                             "arrival":{
-                                "city_code":"ABV",
-                                "city_name":"Abuja",
+                                "cityCode":"ABV",
+                                "cityName":"Abuja",
                                 "airport":"Abuja Nnamd Azikiwe International"
                                 },
                             
                             "booking":{
                                 "id":"GI5njCtlByOCiRu4",
                                 "code":"O",
-                                "code_count":9
+                                "codeCount":9
                                 },
                             "times":{
                                 "departure":"2017-10-04T18:00+01:00",
@@ -237,25 +237,25 @@ With this endpoint you can search for one way flights from a location.
                                 "duration":68
                                 },
                             "pricing":{
-                                "base_fare":"USD100",
-                                "sales_fare":"NGN35983",
-                                "sales_tax":"NGN19701",
-                                "sale_total":"NGN55684"
+                                "baseFare":"USD100",
+                                "salesFare":"NGN35983",
+                                "salesTax":"NGN19701",
+                                "saleTotal":"NGN55684"
                                 },
                             "tax":[
                                     {
                                         "id":"JY_002",
-                                        "charge_type":"GOVERNMENT",
-                                        "charge_code":"JY",
+                                        "chargeType":"GOVERNMENT",
+                                        "chargeCode":"JY",
                                         "country":"NG",
-                                        "sale_price":"NGN1799"
+                                        "salePrice":"NGN1799"
                                     },
                                     {
                                         "id":"QT_001",
-                                        "charge_type":"CARRIER_SURCHARGE",
-                                        "charge_code":"QT",
+                                        "chargeType":"CARRIER_SURCHARGE",
+                                        "chargeCode":"QT",
                                         "country":"NG",
-                                        "sale_price":"NGN2345"
+                                        "salePrice":"NGN2345"
                                     }
                                 ],
                             "carrier":{
@@ -265,7 +265,7 @@ With this endpoint you can search for one way flights from a location.
                             "cabin":"ECONOMY",
                             "mileage":"317",
                             "operating disclosure":"Operated by medview airlines",
-                            "latest_ticketing_time":"2017-10-04T20:00+01:00"
+                            "latestTicketingTime":"2017-10-04T20:00+01:00"
                             
                     }
                 },
@@ -278,20 +278,20 @@ With this endpoint you can search for one way flights from a location.
                                 "name":"Boeing 737"
                                 },
                             "departure":{
-                                "city_code":"LOS",
-                                "city_name":"Lagos",
+                                "cityCode":"LOS",
+                                "cityName":"Lagos",
                                 "airport":"Lagos Murtaka Muhammed International"
                                 },
                             "arrival":{
-                                "city_code":"ABV",
-                                "city_name":"Abuja",
+                                "cityCode":"ABV",
+                                "cityName":"Abuja",
                                 "airport":"Abuja Nnamd Azikiwe International"
                                 },
                             
                             "booking":{
                                 "id":"GI5njCtlByOCiRu4",
                                 "code":"O",
-                                "code_count":9
+                                "codeCount":9
                                 },
                             "times":{
                                 "departure":"2017-10-04T18:00+01:00",
@@ -299,25 +299,25 @@ With this endpoint you can search for one way flights from a location.
                                 "duration":68
                                 },
                             "pricing":{
-                                "base_fare":"USD100",
-                                "sales_fare":"NGN35983",
-                                "sales_tax":"NGN19701",
-                                "sale_total":"NGN55684"
+                                "baseFare":"USD100",
+                                "salesFare":"NGN35983",
+                                "salesTax":"NGN19701",
+                                "saleTotal":"NGN55684"
                                 },
                             "tax":[
                                     {
                                         "id":"JY_002",
-                                        "charge_type":"GOVERNMENT",
-                                        "charge_code":"JY",
+                                        "chargType":"GOVERNMENT",
+                                        "chargeCode":"JY",
                                         "country":"NG",
-                                        "sale_price":"NGN1799"
+                                        "salePrice":"NGN1799"
                                     },
                                     {
                                         "id":"QT_001",
-                                        "charge_type":"CARRIER_SURCHARGE",
-                                        "charge_code":"QT",
+                                        "chargeType":"CARRIER_SURCHARGE",
+                                        "chargeCode":"QT",
                                         "country":"NG",
-                                        "sale_price":"NGN2345"
+                                        "salePrice":"NGN2345"
                                     }
                                 ],
                             "carrier":{
@@ -326,8 +326,8 @@ With this endpoint you can search for one way flights from a location.
                                 },
                             "cabin":"ECONOMY",
                             "mileage":"317",
-                            "operating disclosure":"Operated by medview airlines",
-                            "latest_ticketing_time":"2017-10-04T20:00+01:00"
+                            "operatingDisclosure":"Operated by medview airlines",
+                            "latestTicketingTime":"2017-10-04T20:00+01:00"
                             
                     },
                     "trip2":{
@@ -337,20 +337,20 @@ With this endpoint you can search for one way flights from a location.
                                 "name":"Boeing 737"
                                 },
                             "departure":{
-                                "city_code":"LOS",
-                                "city_name":"Lagos",
+                                "cityCode":"LOS",
+                                "cityName":"Lagos",
                                 "airport":"Lagos Murtaka Muhammed International"
                                 },
                             "arrival":{
-                                "city_code":"ABV",
-                                "city_name":"Abuja",
+                                "cityCode":"ABV",
+                                "cityName":"Abuja",
                                 "airport":"Abuja Nnamd Azikiwe International"
                                 },
                             
                             "booking":{
                                 "id":"GI5njCtlByOCiRu4",
                                 "code":"O",
-                                "code_count":9
+                                "codeCount":9
                                 },
                             "times":{
                                 "departure":"2017-10-04T18:00+01:00",
@@ -358,25 +358,25 @@ With this endpoint you can search for one way flights from a location.
                                 "duration":68
                                 },
                             "pricing":{
-                                "base_fare":"USD100",
-                                "sales_fare":"NGN35983",
-                                "sales_tax":"NGN19701",
-                                "sale_total":"NGN55684"
+                                "baseFare":"USD100",
+                                "salesFare":"NGN35983",
+                                "salesTax":"NGN19701",
+                                "saleTotal":"NGN55684"
                                 },
                             "tax":[
                                     {
                                         "id":"JY_002",
-                                        "charge_type":"GOVERNMENT",
-                                        "charge_code":"JY",
+                                        "chargeType":"GOVERNMENT",
+                                        "chargeCode":"JY",
                                         "country":"NG",
-                                        "sale_price":"NGN1799"
+                                        "salePrice":"NGN1799"
                                     },
                                     {
                                         "id":"QT_001",
-                                        "charge_type":"CARRIER_SURCHARGE",
-                                        "charge_code":"QT",
+                                        "chargeType":"CARRIER_SURCHARGE",
+                                        "chargeCode":"QT",
                                         "country":"NG",
-                                        "sale_price":"NGN2345"
+                                        "salePrice":"NGN2345"
                                     }
                                 ],
                             "carrier":{
@@ -385,8 +385,8 @@ With this endpoint you can search for one way flights from a location.
                                 },
                             "cabin":"ECONOMY",
                             "mileage":"317",
-                            "operating disclosure":"Operated by medview airlines",
-                            "latest_ticketing_time":"2017-10-04T20:00+01:00"
+                            "operatingDisclosure":"Operated by medview airlines",
+                            "latestTicketingTime":"2017-10-04T20:00+01:00"
                             
                     }
                     
@@ -445,8 +445,8 @@ With this endpoint you can search for flights going and returning to a location.
                     }
                  },
                  {"airline":{
-                    "carrier_code":"W3",
-                    "carrier_name":"Arik Airline",
+                    "carrierCode":"W3",
+                    "carrierName":"Arik Airline",
                     "cabin":"first class"
                     }
                  },
@@ -483,20 +483,20 @@ With this endpoint you can search for flights going and returning to a location.
                                 "name":"Boeing 737"
                                 },
                             "departure":{
-                                "city_code":"LOS",
-                                "city_name":"Lagos",
+                                "cityCode":"LOS",
+                                "cityName":"Lagos",
                                 "airport":"Lagos Murtaka Muhammed International"
                                 },
                             "arrival":{
-                                "city_code":"ABV",
-                                "city_name":"Abuja",
+                                "cityCode":"ABV",
+                                "cityName":"Abuja",
                                 "airport":"Abuja Nnamd Azikiwe International"
                                 },
                             
                             "booking":{
                                 "id":"GI5njCtlByOCiRu4",
                                 "code":"O",
-                                "code_count":9
+                                "codeCount":9
                                 },
                             "times":{
                                 "departure":"2017-10-04T18:00+01:00",
@@ -504,25 +504,25 @@ With this endpoint you can search for flights going and returning to a location.
                                 "duration":68
                                 },
                             "pricing":{
-                                "base_fare":"USD100",
-                                "sales_fare":"NGN35983",
-                                "sales_tax":"NGN19701",
-                                "sale_total":"NGN55684"
+                                "baseFare":"USD100",
+                                "salesFare":"NGN35983",
+                                "salesTax":"NGN19701",
+                                "saleTotal":"NGN55684"
                                 },
                             "tax":[
                                     {
                                         "id":"JY_002",
-                                        "charge_type":"GOVERNMENT",
-                                        "charge_code":"JY",
+                                        "chargeType":"GOVERNMENT",
+                                        "chargeCode":"JY",
                                         "country":"NG",
-                                        "sale_price":"NGN1799"
+                                        "salePrice":"NGN1799"
                                     },
                                     {
                                         "id":"QT_001",
-                                        "charge_type":"CARRIER_SURCHARGE",
-                                        "charge_code":"QT",
+                                        "chargeType":"CARRIER_SURCHARGE",
+                                        "chargeCode":"QT",
                                         "country":"NG",
-                                        "sale_price":"NGN2345"
+                                        "salePrice":"NGN2345"
                                     }
                                 ],
                             "carrier":{
@@ -531,8 +531,8 @@ With this endpoint you can search for flights going and returning to a location.
                                 },
                             "cabin":"",
                             "mileage":"",
-                            "operating disclosure":"",
-                            "latest_ticketing_time":""
+                            "operatingDisclosure":"",
+                            "latestTicketingTime":""
                             
                     }
                 },
@@ -545,20 +545,20 @@ With this endpoint you can search for flights going and returning to a location.
                                 "name":"Boeing 737"
                                 },
                             "departure":{
-                                "city_code":"LOS",
-                                "city_name":"Lagos",
+                                "cityCode":"LOS",
+                                "cityName":"Lagos",
                                 "airport":"Lagos Murtaka Muhammed International"
                                 },
                             "arrival":{
-                                "city_code":"ABV",
-                                "city_name":"Abuja",
+                                "cityCode":"ABV",
+                                "cityName":"Abuja",
                                 "airport":"Abuja Nnamd Azikiwe International"
                                 },
                             
                             "booking":{
                                 "id":"GI5njCtlByOCiRu4",
                                 "code":"O",
-                                "code_count":9
+                                "codeCount":9
                                 },
                             "times":{
                                 "departure":"2017-10-04T18:00+01:00",
@@ -566,25 +566,25 @@ With this endpoint you can search for flights going and returning to a location.
                                 "duration":68
                                 },
                             "pricing":{
-                                "base_fare":"USD100",
-                                "sales_fare":"NGN35983",
-                                "sales_tax":"NGN19701",
-                                "sale_total":"NGN55684"
+                                "baseFare":"USD100",
+                                "salesFare":"NGN35983",
+                                "salesTax":"NGN19701",
+                                "saleTotal":"NGN55684"
                                 },
                             "tax":[
                                     {
                                         "id":"JY_002",
-                                        "charge_type":"GOVERNMENT",
-                                        "charge_code":"JY",
+                                        "chargeType":"GOVERNMENT",
+                                        "chargeCode":"JY",
                                         "country":"NG",
-                                        "sale_price":"NGN1799"
+                                        "salePrice":"NGN1799"
                                     },
                                     {
                                         "id":"QT_001",
-                                        "charge_type":"CARRIER_SURCHARGE",
-                                        "charge_code":"QT",
+                                        "chargeType":"CARRIER_SURCHARGE",
+                                        "chargeCode":"QT",
                                         "country":"NG",
-                                        "sale_price":"NGN2345"
+                                        "salePrice":"NGN2345"
                                     }
                                 ],
                             "carrier":{
@@ -593,8 +593,8 @@ With this endpoint you can search for flights going and returning to a location.
                                 },
                             "cabin":"",
                             "mileage":"",
-                            "operating disclosure":"",
-                            "latest_ticketing_time":""
+                            "operatingDisclosure":"",
+                            "latestTicketingTime":""
                             
                     },
                     "trip2":{
@@ -604,20 +604,20 @@ With this endpoint you can search for flights going and returning to a location.
                                 "name":"Boeing 737"
                                 },
                             "departure":{
-                                "city_code":"LOS",
-                                "city_name":"Lagos",
+                                "cityCode":"LOS",
+                                "cityName":"Lagos",
                                 "airport":"Lagos Murtaka Muhammed International"
                                 },
                             "arrival":{
-                                "city_code":"ABV",
-                                "city_name":"Abuja",
+                                "cityCode":"ABV",
+                                "cityName":"Abuja",
                                 "airport":"Abuja Nnamd Azikiwe International"
                                 },
                             
                             "booking":{
                                 "id":"GI5njCtlByOCiRu4",
                                 "code":"O",
-                                "code_count":9
+                                "codeCount":9
                                 },
                             "times":{
                                 "departure":"2017-10-04T18:00+01:00",
@@ -625,25 +625,25 @@ With this endpoint you can search for flights going and returning to a location.
                                 "duration":68
                                 },
                             "pricing":{
-                                "base_fare":"USD100",
-                                "sales_fare":"NGN35983",
-                                "sales_tax":"NGN19701",
-                                "sale_total":"NGN55684"
+                                "baseFare":"USD100",
+                                "salesFare":"NGN35983",
+                                "salesTax":"NGN19701",
+                                "saleTotal":"NGN55684"
                                 },
                             "tax":[
                                     {
                                         "id":"JY_002",
-                                        "charge_type":"GOVERNMENT",
-                                        "charge_code":"JY",
+                                        "chargeType":"GOVERNMENT",
+                                        "chargeCode":"JY",
                                         "country":"NG",
-                                        "sale_price":"NGN1799"
+                                        "salePrice":"NGN1799"
                                     },
                                     {
                                         "id":"QT_001",
-                                        "charge_type":"CARRIER_SURCHARGE",
-                                        "charge_code":"QT",
+                                        "chargeType":"CARRIER_SURCHARGE",
+                                        "chargeCde":"QT",
                                         "country":"NG",
-                                        "sale_price":"NGN2345"
+                                        "salePrice":"NGN2345"
                                     }
                                 ],
                             "carrier":{
@@ -652,8 +652,8 @@ With this endpoint you can search for flights going and returning to a location.
                                 },
                             "cabin":"",
                             "mileage":"",
-                            "operating disclosure":"",
-                            "latest_ticketing_time":""
+                            "operatingDisclosure":"",
+                            "latestTicketingTime":""
                             
                     }
                     
