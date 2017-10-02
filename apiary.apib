@@ -1,80 +1,132 @@
 FORMAT: 1A
 HOST: http://polls.apiblueprint.org/
 
-# searchflight
+# Searchflight
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Searchflight is a robust API that enables you integrate flights search and bookings into your app.
 
-## Questions Collection [/questions]
 
-### List All Questions [GET]
+## Authentication [/token]
 
-+ Response 200 (application/json)
+### Get Token [POST]
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
+Searchflight expects for a authorization token to be included in all requests as a header.
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
-
+            "api_key": "lQKF8n1KVYezN7MDTMqxhXGrZCfgRDvQ",
+         }
 + Response 201 (application/json)
 
-    + Headers
-
-            Location: /questions/2
 
     + Body
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
+                "status": "200",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQwLCJuYW1lIjoic2F2YW5hIHNtYXJ0c2F2ZSIsImFjY291bnROdW1iZ",
+            }
+
+
+## Get city code from name [/cities]
+
+### Get city code from name [POST]
+With this endpoint you can get the IATA city codes associated with a particular city name.
+
++ Request (application/json, )
+    + Headers
+
+            Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQwLCJuYW1lIjoic2F2YW5hIHNtYXJ0c2F2ZSIsImFjY291bnROdW1iZ
+
+    + Body
+                    
+            {
+                 "city_name": "Uyo,
+            }
++ Response 201 (application/json)
+
+
+    + Body
+
+            {
+                "status": "200",
+                "data": [
                     {
-                        "choice": "Swift",
-                        "votes": 0
+                        "city_code": "QUO",
+                        "city_name": "Uyo",
+                        "country": "Nigeria"
+                        
                     }, {
-                        "choice": "Python",
-                        "votes": 0
+                        "city_code": "PSR",
+                        "city_name": "Uyo",
+                        "country": "Switzerland"
                     }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
+                        "city_code": "WDV",
+                        "city_name": "Uyo",
+                        "country": "Algeria"
                     }
                 ]
+            }
++ Response 401 (application/json)
+
+
+    + Body
+
+            {
+                "status": "401",
+                "data": "Unauthorized access"
+            }
++ Response 404 (application/json)
+
+
+    + Body
+
+            {
+                "status": "404",
+                "data": "resource not found"
+            }
+
+
+## Get city name from code [/cities{city_name}]
+
+### Get city name from code [GET]
+With this endpoint you can get the city name associated with an IATA Code.
+Searchflight expects for a authorization token to be included in all requests as a header.
++ Request (application/json, )
+    + Headers
+
+            Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQwLCJuYW1lIjoic2F2YW5hIHNtYXJ0c2F2ZSIsImFjY291bnROdW1iZ
+
++ Response 201 (application/json)
+
+
+    + Body
+
+            {
+                "status": "200",
+                "data": [
+                    {
+                        "city_code": "QUO",
+                        "city_name": "Uyo",
+                        "country": "Nigeria"
+                        
+                    }
+                ]
+            }
++ Response 401 (application/json)
+
+
+    + Body
+
+            {
+                "status": "401",
+                "data": "Unauthorized access"
+            }
++ Response 404 (application/json)
+
+
+    + Body
+
+            {
+                "status": "404",
+                "data": "resource not found"
             }
