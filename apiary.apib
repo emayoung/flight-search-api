@@ -25,6 +25,16 @@ Searchflight expects for a authorization token to be included in all requests as
                 "status": "200",
                 "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQwLCJuYW1lIjoic2F2YW5hIHNtYXJ0c2F2ZSIsImFjY291bnROdW1iZ",
             }
+            
++ Response 404 (application/json)
+
+
+    + Body
+
+            {
+                "status": "404",
+                "data": "App key is not valid"
+            }
 
 
 ## Get city code from name [/cities]
@@ -40,7 +50,7 @@ With this endpoint you can get the IATA city codes associated with a particular 
     + Body
                     
             {
-                 "city_name": "Uyo,
+                 "city_name": "Uyo"
             }
 + Response 201 (application/json)
 
@@ -53,15 +63,18 @@ With this endpoint you can get the IATA city codes associated with a particular 
                     {
                         "city_code": "QUO",
                         "city_name": "Uyo",
+                        "airport":"Ibom International Airport",
                         "country": "Nigeria"
                         
                     }, {
                         "city_code": "PSR",
                         "city_name": "Uyo",
+                        "airport":"Beis Airport",
                         "country": "Switzerland"
                     }, {
                         "city_code": "WDV",
                         "city_name": "Uyo",
+                        "airport":"Algeria Intl",
                         "country": "Algeria"
                     }
                 ]
@@ -82,11 +95,11 @@ With this endpoint you can get the IATA city codes associated with a particular 
 
             {
                 "status": "404",
-                "data": "resource not found"
+                "data": "City does not exist"
             }
 
 
-## Get city name from code [/cities{city_name}]
+## Get city name from code [/cities/{city_code}]
 
 ### Get city name from code [GET]
 With this endpoint you can get the city name associated with an IATA Code.
@@ -95,6 +108,7 @@ Searchflight expects for a authorization token to be included in all requests as
     + Headers
 
             Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQwLCJuYW1lIjoic2F2YW5hIHNtYXJ0c2F2ZSIsImFjY291bnROdW1iZ
+            
 
 + Response 201 (application/json)
 
@@ -128,5 +142,542 @@ Searchflight expects for a authorization token to be included in all requests as
 
             {
                 "status": "404",
-                "data": "resource not found"
+                "data": "City code does not exist"
+            }
+## Search One way Flight [/search/flights/one-way]
+
+### Search one way flight [POST]
+With this endpoint you can search for one way flights from a location.
++ Request (application/json, )
+    + Headers
+
+            Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQwLCJuYW1lIjoic2F2YW5hIHNtYXJ0c2F2ZSIsImFjY291bnROdW1iZ
+            
+
+    + Body
+                    
+            {
+                 "origin": "QUO",
+                 "destination":"LOS",
+                 "departure":"2017-10-04",
+                 "options": [
+                 {"times":{
+                    "depart":"11:30",
+                    "return":"15:00"
+                    }
+                 },
+                 {"price":{
+                    "currency":"NGN",
+                    "below":"50,000"
+                    }
+                 },
+                 {"airline":{
+                    "carrier_code":"W3",
+                    "carrier_name":"Arik Airline",
+                    "cabin":"first class"
+                    }
+                 },
+                 {"passengers": {
+                      "adultCount": 1,
+                      "infantInLapCount": 0,
+                      "infantInSeatCount": 0,
+                      "childCount": 0,
+                      "seniorCount": 0
+                    }
+                 },
+                 {"extras":{
+                     "stops":"0",
+                     "refundable":"true"
+                     }
+                }
+                ]
+                 
+            }
++ Response 201 (application/json)
+
+
+    + Body
+
+            {
+                "status": "200",
+                "data": [
+                {
+                    "stops":0,
+                    "trip":{
+                            
+                            "aircraft":{
+                                "code":"767",
+                                "name":"Boeing 737"
+                                },
+                            "departure":{
+                                "city_code":"LOS",
+                                "city_name":"Lagos",
+                                "airport":"Lagos Murtaka Muhammed International"
+                                },
+                            "arrival":{
+                                "city_code":"ABV",
+                                "city_name":"Abuja",
+                                "airport":"Abuja Nnamd Azikiwe International"
+                                },
+                            
+                            "booking":{
+                                "id":"GI5njCtlByOCiRu4",
+                                "code":"O",
+                                "code_count":9
+                                },
+                            "times":{
+                                "departure":"2017-10-04T18:00+01:00",
+                                "arrival":"2017-10-04T19:00+01:00",
+                                "duration":68
+                                },
+                            {
+                                "departure":"2017-10-04T20:00+01:00",
+                                "arrival":"2017-10-04T21:00+01:00",
+                                "duration":68
+                                },
+                            "pricing":{
+                                "base_fare":"USD100",
+                                "sales_fare":"NGN35983",
+                                "sales_tax":"NGN19701",
+                                "sale_total":"NGN55684"
+                                },
+                            "tax":[
+                                    {
+                                        "id":"JY_002",
+                                        "charge_type":"GOVERNMENT",
+                                        "charge_code":"JY",
+                                        "country":"NG",
+                                        "sale_price":"NGN1799"
+                                    },
+                                    {
+                                        "id":"QT_001",
+                                        "charge_type":"CARRIER_SURCHARGE",
+                                        "charge_code":"QT",
+                                        "country":"NG",
+                                        "sale_price":"NGN2345"
+                                    }
+                                ],
+                            "carrier":{
+                                "code":"H1",
+                                "name":"Hahn Air System"
+                                },
+                            "cabin":"ECONOMY",
+                            "mileage":"317",
+                            "operating disclosure":"Operated by medview airlines",
+                            "latest_ticketing_time":"2017-10-04T20:00+01:00"
+                            
+                    }
+                },
+                {
+                    "stops":2,
+                    "trip1":{
+                            
+                            "aircraft":{
+                                "code":"767",
+                                "name":"Boeing 737"
+                                },
+                            "departure":{
+                                "city_code":"LOS",
+                                "city_name":"Lagos",
+                                "airport":"Lagos Murtaka Muhammed International"
+                                },
+                            "arrival":{
+                                "city_code":"ABV",
+                                "city_name":"Abuja",
+                                "airport":"Abuja Nnamd Azikiwe International"
+                                },
+                            
+                            "booking":{
+                                "id":"GI5njCtlByOCiRu4",
+                                "code":"O",
+                                "code_count":9
+                                },
+                            "times":{
+                                "departure":"2017-10-04T18:00+01:00",
+                                "arrival":"2017-10-04T19:00+01:00",
+                                "duration":68
+                                },
+                            "pricing":{
+                                "base_fare":"USD100",
+                                "sales_fare":"NGN35983",
+                                "sales_tax":"NGN19701",
+                                "sale_total":"NGN55684"
+                                },
+                            "tax":[
+                                    {
+                                        "id":"JY_002",
+                                        "charge_type":"GOVERNMENT",
+                                        "charge_code":"JY",
+                                        "country":"NG",
+                                        "sale_price":"NGN1799"
+                                    },
+                                    {
+                                        "id":"QT_001",
+                                        "charge_type":"CARRIER_SURCHARGE",
+                                        "charge_code":"QT",
+                                        "country":"NG",
+                                        "sale_price":"NGN2345"
+                                    }
+                                ],
+                            "carrier":{
+                                "code":"H1",
+                                "name":"Hahn Air System"
+                                },
+                            "cabin":"ECONOMY",
+                            "mileage":"317",
+                            "operating disclosure":"Operated by medview airlines",
+                            "latest_ticketing_time":"2017-10-04T20:00+01:00"
+                            
+                    },
+                    "trip2":{
+                            
+                            "aircraft":{
+                                "code":"767",
+                                "name":"Boeing 737"
+                                },
+                            "departure":{
+                                "city_code":"LOS",
+                                "city_name":"Lagos",
+                                "airport":"Lagos Murtaka Muhammed International"
+                                },
+                            "arrival":{
+                                "city_code":"ABV",
+                                "city_name":"Abuja",
+                                "airport":"Abuja Nnamd Azikiwe International"
+                                },
+                            
+                            "booking":{
+                                "id":"GI5njCtlByOCiRu4",
+                                "code":"O",
+                                "code_count":9
+                                },
+                            "times":{
+                                "departure":"2017-10-04T18:00+01:00",
+                                "arrival":"2017-10-04T19:00+01:00",
+                                "duration":68
+                                },
+                            "pricing":{
+                                "base_fare":"USD100",
+                                "sales_fare":"NGN35983",
+                                "sales_tax":"NGN19701",
+                                "sale_total":"NGN55684"
+                                },
+                            "tax":[
+                                    {
+                                        "id":"JY_002",
+                                        "charge_type":"GOVERNMENT",
+                                        "charge_code":"JY",
+                                        "country":"NG",
+                                        "sale_price":"NGN1799"
+                                    },
+                                    {
+                                        "id":"QT_001",
+                                        "charge_type":"CARRIER_SURCHARGE",
+                                        "charge_code":"QT",
+                                        "country":"NG",
+                                        "sale_price":"NGN2345"
+                                    }
+                                ],
+                            "carrier":{
+                                "code":"H1",
+                                "name":"Hahn Air System"
+                                },
+                            "cabin":"ECONOMY",
+                            "mileage":"317",
+                            "operating disclosure":"Operated by medview airlines",
+                            "latest_ticketing_time":"2017-10-04T20:00+01:00"
+                            
+                    }
+                    
+                }
+                
+                
+                    
+                    
+                ]
+            }
++ Response 401 (application/json)
+
+
+    + Body
+
+            {
+                "status": "401",
+                "data": "Unauthorized access"
+            }
++ Response 404 (application/json)
+
+
+    + Body
+
+            {
+                "status": "404",
+                "data": "No flight data for search"
+            }
+
+## Search Round Trip Flight [/search/flights/round-trip]
+
+### Search Round Trip Flight [POST]
+With this endpoint you can search for flights going and returning to a location.
++ Request (application/json, )
+    + Headers
+
+            Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQwLCJuYW1lIjoic2F2YW5hIHNtYXJ0c2F2ZSIsImFjY291bnROdW1iZ
+            
+
+    + Body
+                    
+            {
+                 "origin": "QUO",
+                 "destination":"LOS",
+                 "departure":"2017-10-04",
+                 "return":"2017-10-05",
+                 "options": [
+                 {"times":{
+                    "depart":"11:30",
+                    "return":"15:00"
+                    }
+                 },
+                 {"price":{
+                    "currency":"NGN",
+                    "below":"50,000"
+                    }
+                 },
+                 {"airline":{
+                    "carrier_code":"W3",
+                    "carrier_name":"Arik Airline",
+                    "cabin":"first class"
+                    }
+                 },
+                 {"passengers": {
+                      "adultCount": 1,
+                      "infantInLapCount": 0,
+                      "infantInSeatCount": 0,
+                      "childCount": 0,
+                      "seniorCount": 0
+                    }
+                 },
+                 {"extras":{
+                     "stops":"0",
+                     "refundable":"true"
+                     }
+                }
+                ]
+                 
+            }
++ Response 201 (application/json)
+
+
+    + Body
+
+            {
+                "status": "200",
+                "data": [
+                {
+                    "stops":0,
+                    "trip":{
+                            
+                            "aircraft":{
+                                "code":"767",
+                                "name":"Boeing 737"
+                                },
+                            "departure":{
+                                "city_code":"LOS",
+                                "city_name":"Lagos",
+                                "airport":"Lagos Murtaka Muhammed International"
+                                },
+                            "arrival":{
+                                "city_code":"ABV",
+                                "city_name":"Abuja",
+                                "airport":"Abuja Nnamd Azikiwe International"
+                                },
+                            
+                            "booking":{
+                                "id":"GI5njCtlByOCiRu4",
+                                "code":"O",
+                                "code_count":9
+                                },
+                            "times":{
+                                "departure":"2017-10-04T18:00+01:00",
+                                "arrival":"2017-10-04T19:00+01:00",
+                                "duration":68
+                                },
+                            "pricing":{
+                                "base_fare":"USD100",
+                                "sales_fare":"NGN35983",
+                                "sales_tax":"NGN19701",
+                                "sale_total":"NGN55684"
+                                },
+                            "tax":[
+                                    {
+                                        "id":"JY_002",
+                                        "charge_type":"GOVERNMENT",
+                                        "charge_code":"JY",
+                                        "country":"NG",
+                                        "sale_price":"NGN1799"
+                                    },
+                                    {
+                                        "id":"QT_001",
+                                        "charge_type":"CARRIER_SURCHARGE",
+                                        "charge_code":"QT",
+                                        "country":"NG",
+                                        "sale_price":"NGN2345"
+                                    }
+                                ],
+                            "carrier":{
+                                "code":"H1",
+                                "name":"Hahn Air System"
+                                },
+                            "cabin":"",
+                            "mileage":"",
+                            "operating disclosure":"",
+                            "latest_ticketing_time":""
+                            
+                    }
+                },
+                {
+                    "stops":2,
+                    "trip1":{
+                            
+                            "aircraft":{
+                                "code":"767",
+                                "name":"Boeing 737"
+                                },
+                            "departure":{
+                                "city_code":"LOS",
+                                "city_name":"Lagos",
+                                "airport":"Lagos Murtaka Muhammed International"
+                                },
+                            "arrival":{
+                                "city_code":"ABV",
+                                "city_name":"Abuja",
+                                "airport":"Abuja Nnamd Azikiwe International"
+                                },
+                            
+                            "booking":{
+                                "id":"GI5njCtlByOCiRu4",
+                                "code":"O",
+                                "code_count":9
+                                },
+                            "times":{
+                                "departure":"2017-10-04T18:00+01:00",
+                                "arrival":"2017-10-04T19:00+01:00",
+                                "duration":68
+                                },
+                            "pricing":{
+                                "base_fare":"USD100",
+                                "sales_fare":"NGN35983",
+                                "sales_tax":"NGN19701",
+                                "sale_total":"NGN55684"
+                                },
+                            "tax":[
+                                    {
+                                        "id":"JY_002",
+                                        "charge_type":"GOVERNMENT",
+                                        "charge_code":"JY",
+                                        "country":"NG",
+                                        "sale_price":"NGN1799"
+                                    },
+                                    {
+                                        "id":"QT_001",
+                                        "charge_type":"CARRIER_SURCHARGE",
+                                        "charge_code":"QT",
+                                        "country":"NG",
+                                        "sale_price":"NGN2345"
+                                    }
+                                ],
+                            "carrier":{
+                                "code":"H1",
+                                "name":"Hahn Air System"
+                                },
+                            "cabin":"",
+                            "mileage":"",
+                            "operating disclosure":"",
+                            "latest_ticketing_time":""
+                            
+                    },
+                    "trip2":{
+                            
+                            "aircraft":{
+                                "code":"767",
+                                "name":"Boeing 737"
+                                },
+                            "departure":{
+                                "city_code":"LOS",
+                                "city_name":"Lagos",
+                                "airport":"Lagos Murtaka Muhammed International"
+                                },
+                            "arrival":{
+                                "city_code":"ABV",
+                                "city_name":"Abuja",
+                                "airport":"Abuja Nnamd Azikiwe International"
+                                },
+                            
+                            "booking":{
+                                "id":"GI5njCtlByOCiRu4",
+                                "code":"O",
+                                "code_count":9
+                                },
+                            "times":{
+                                "departure":"2017-10-04T18:00+01:00",
+                                "arrival":"2017-10-04T19:00+01:00",
+                                "duration":68
+                                },
+                            "pricing":{
+                                "base_fare":"USD100",
+                                "sales_fare":"NGN35983",
+                                "sales_tax":"NGN19701",
+                                "sale_total":"NGN55684"
+                                },
+                            "tax":[
+                                    {
+                                        "id":"JY_002",
+                                        "charge_type":"GOVERNMENT",
+                                        "charge_code":"JY",
+                                        "country":"NG",
+                                        "sale_price":"NGN1799"
+                                    },
+                                    {
+                                        "id":"QT_001",
+                                        "charge_type":"CARRIER_SURCHARGE",
+                                        "charge_code":"QT",
+                                        "country":"NG",
+                                        "sale_price":"NGN2345"
+                                    }
+                                ],
+                            "carrier":{
+                                "code":"H1",
+                                "name":"Hahn Air System"
+                                },
+                            "cabin":"",
+                            "mileage":"",
+                            "operating disclosure":"",
+                            "latest_ticketing_time":""
+                            
+                    }
+                    
+                }
+                
+                
+                    
+                    
+                ]
+            }
++ Response 401 (application/json)
+
+
+    + Body
+
+            {
+                "status": "401",
+                "data": "Unauthorized access"
+            }
++ Response 404 (application/json)
+
+
+    + Body
+
+            {
+                "status": "404",
+                "data": "No flight data for search"
             }
