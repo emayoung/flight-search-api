@@ -6,17 +6,20 @@ HOST: http://polls.apiblueprint.org/
 Searchflight is a robust API that enables you integrate flights search and bookings into your app.
 
 
-## Authentication [api/v1/tokens]
+## Authentication [/api/v1/tokens]
 
 ### Get Token [POST]
 
-Searchflight expects for a authorization token to be included in all requests as a header.
+SearchFlight uses apikey to enable access  it's api. To have access to api key, contact us.
+Api key gotten generates an authorization token, which must be included in all requests as a header.
+
 + Request (application/json)
     + Body
     
             {
                 "apiKey": "lQKF8n1KVYezN7MDTMqxhXGrZCfgRDvQ"
              }
+
 + Response 201 (application/json)
 
 
@@ -38,7 +41,7 @@ Searchflight expects for a authorization token to be included in all requests as
             }
 
 
-## Get city code from name [api/v1/cities]
+## Get city code from name [/api/v1/cities]
 
 ### Get city code from name [POST]
 With this endpoint you can get the IATA city codes associated with a particular city name.
@@ -100,9 +103,9 @@ With this endpoint you can get the IATA city codes associated with a particular 
             }
 
 
-## Get city name from code [api/v1/cities/{cityCode}]
+## Get city name from code [/api/v1/cities/{cityCode}]
 
-### Get city name from code [GET]
+### Get city name from code [POST]
 With this endpoint you can get the city name associated with an IATA Code.
 Searchflight expects for a authorization token to be included in all requests as a header.
 + Request (application/json, )
@@ -145,7 +148,7 @@ Searchflight expects for a authorization token to be included in all requests as
                 "status": "404",
                 "data": "City code does not exist"
             }
-## Search One way Flight [api/v1/search/flights/{oneWay}]
+## Search One way Flight [/api/v1/search/flights/{oneWay}]
 
 ### Search one way flight [POST]
 With this endpoint you can search for one way flights from a location.
@@ -416,7 +419,7 @@ With this endpoint you can search for one way flights from a location.
                 "data": "No flight data for search"
             }
 
-## Search Round Trip Flight [api/v1/search/flights/{roundTrip}]
+## Search Round Trip Flight [/api/v1/search/flights/{roundTrip}]
 
 ### Search Round Trip Flight [POST]
 With this endpoint you can search for flights going and returning to a location.
